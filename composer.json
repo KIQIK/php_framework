@@ -1,0 +1,15 @@
+{
+    "name": "alex/test-framework.com",
+    "authors": [
+        {
+            "name": "KIQIK",
+            "email": "QLEKS96@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "require": {}
+}
