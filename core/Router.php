@@ -6,40 +6,62 @@ class Router
 {
     protected array $routes = [];
 
+    public Request $request;
+    public Response $response;
+
+    /**
+     * @param Request $request
+     */
+    public function __construct(Request $request, Response $response)
+    {
+        $this->request = $request;
+        $this->response = $response;
+    }
+
+
     public function get($path, $callback)
     {
         $this->routes['get'][$path] = $callback;
     }
 
-    public function method()
+    public function layoutContent()
     {
-        return strtolower($_SERVER['REQUEST_METHOD']);
-
+        ob_start();
+        require_once Application::$ROOT_DIR."/../views/layouts/_main.php";
+        return ob_get_clean();
     }
 
-    public function getPath()
+    public function renderOnlyView($name)
     {
-        $path = $_SERVER['REQUEST_URI'] ?? '/';
-        $position = strpos($path, '?');
-        if ($position === false) {
-            return $path;
-        }
-        return substr($path, 0, $position);
+        ob_start();
+        require_once Application::$ROOT_DIR."/../views/$name.php";
+        return ob_get_clean();
     }
+
+    public function renderView($name)
+    {
+        $layout = $this->layoutContent();
+        $view = $this->renderOnlyView($name);
+
+        return str_replace('{{content}}', $view, $layout);
+    }
+
+
 
     public function resolve()
     {
-        $method = $this->method();
-        $path = $this->getPath();
+        $method = $this->request->method();
+        $path = $this->request->getPath();
 
         $callback = $this->routes[$method][$path] ?? false;
         
 
         if($callback === false) {
+            Application::$app->response->setStatusCode(404);;
             return 'Not found';
         }
         if(is_string($callback)) {
-            return $callback;
+            return $this->renderView($callback);
         }
 
         return call_user_func($this->routes[$method][$path]);
