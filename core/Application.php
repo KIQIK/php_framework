@@ -11,6 +11,8 @@ class Application
     public Request $request;
     public Response $response;
 
+    public Controller $controller;
+
     /**
      * @param Router $router
      */

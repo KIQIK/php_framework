@@ -10,6 +10,17 @@ class Request
 
     }
 
+    public function isGet()
+    {
+        return $this->method() === 'get';
+    }
+
+    public function isPost()
+    {
+        return $this->method() === 'post';
+    }
+
+
     public function getPath()
     {
         $path = $_SERVER['REQUEST_URI'] ?? '/';
