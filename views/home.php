@@ -1,4 +1,4 @@
 <div class="container">
     <h1>Home</h1>
-    <h3>Wellcome</h3>
+    <h3><?php  echo $name ?></h3>
 </div>
