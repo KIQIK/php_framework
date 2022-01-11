@@ -1,16 +1,31 @@
 <div class="container">
     <h1>Contact</h1>
-    <?php $form = \app\core\form\Form::begin('', 'post'); ?>
+
+    <form method="post" action="" >
         <div class="row">
-            <div class="col"><?php echo $form->field($model, 'firstname'); ?></div>
-            <div class="col"><?php echo $form->field($model, 'lastname'); ?></div>
+            <div class="col">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" class="form-control"   placeholder="First name">
+                </div></div>
+            <div class="col">
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control"   placeholder="Last name">
+                </div></div>
+            </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control"   placeholder="Email">
         </div>
-        <?php echo $form->field($model, 'email'); ?>
-        <?php echo $form->field($model, 'password')->passwordField(); ?>
-        <?php echo $form->field($model, 'passwordConfirm')->passwordField(); ?>
-
+        <div class="form-group">
+            <label> Password</label>
+            <input type="password" class="form-control"   placeholder="password">
+        </div>
+        <div class="form-group">
+            <label> Repeat password</label>
+            <input type="password" class="form-control"   placeholder="confirmPassword">
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-    <?php echo \app\core\form\Form::end(); ?>
-
-
+    </form>
 </div>

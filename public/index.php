@@ -4,6 +4,7 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 use app\core\Application;
 use app\controllers\SiteController;
+use app\controllers\AuthController;
 
 $app = new Application(__DIR__);
 

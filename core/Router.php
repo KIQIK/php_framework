@@ -52,7 +52,7 @@ class Router
     {
         $layout = $this->layoutContent();
         $content = $this->renderOnlyView($view, $params);
-
+        
         return str_replace('{{content}}', $content, $layout);
     }
 
@@ -66,6 +66,7 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
         
 
+
         if($callback === false) {
             Application::$app->response->setStatusCode(404);;
             return $this->renderView('_404');
@@ -77,7 +78,7 @@ class Router
             Application::$app->controller= new $callback[0]();
             $callback[0] = Application::$app->controller;
         }
-
+        
         return call_user_func($callback, $this->request);
     }
 }
