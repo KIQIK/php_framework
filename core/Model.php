@@ -2,7 +2,7 @@
 
 namespace app\core;
 
-Abstract class Model
+abstract class Model
 {
     public const RULE_REQUIRED = 'required';
     public const RULE_EMAIL = 'email';
@@ -53,7 +53,8 @@ Abstract class Model
 
     public function addError(string $attribute, string $rule, $params = [])
     {
-        $message = $this->errorMessages()[$attribute] ?? '';
+
+        $message = $this->errorMessages()[$rule] ?? '';
         foreach ($params as $key => $value) {
             $message = str_replace("{{$key}}", $value, $message);
         }
