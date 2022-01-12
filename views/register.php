@@ -6,25 +6,25 @@
             <div class="col">
                 <div class="form-group">
                     <label>First Name</label>
-                    <input type="text" class="form-control"   placeholder="First name">
+                    <input type="text" name="firstname" class="form-control"   placeholder="First name">
                 </div></div>
             <div class="col">
                 <div class="form-group">
                     <label>Last Name</label>
-                    <input type="text" class="form-control"   placeholder="Last name">
+                    <input type="text"  name="lastname" class="form-control"   placeholder="Last name">
                 </div></div>
             </div>
         <div class="form-group">
             <label>Email</label>
-            <input type="email" class="form-control"   placeholder="Email">
+            <input type="email" name="email" class="form-control"   placeholder="Email">
         </div>
         <div class="form-group">
             <label> Password</label>
-            <input type="password" class="form-control"   placeholder="password">
+            <input type="password"  name="password" class="form-control"   placeholder="password">
         </div>
         <div class="form-group">
             <label> Repeat password</label>
-            <input type="password" class="form-control"   placeholder="confirmPassword">
+            <input type="password" name="passwordConfirm" class="form-control"   placeholder="Repeat Password">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
