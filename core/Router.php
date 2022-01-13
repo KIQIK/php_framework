@@ -33,7 +33,7 @@ class Router
     {
         $layout = Application::$app->controller->layout;
         ob_start();
-        require_once Application::$ROOT_DIR."/../views/layouts/$layout.php";
+        require_once Application::$ROOT_DIR."/views/layouts/$layout.php";
         return ob_get_clean();
     }
 
@@ -44,7 +44,7 @@ class Router
         }
 
         ob_start();
-        require_once Application::$ROOT_DIR."/../views/$view.php";
+        require_once Application::$ROOT_DIR."/views/$view.php";
         return ob_get_clean();
     }
 

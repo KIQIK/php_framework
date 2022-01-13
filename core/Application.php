@@ -11,13 +11,14 @@ class Application
     public Router $router;
     public Request $request;
     public Response $response;
+    public Database $db;
 
     public Controller $controller;
 
     /**
      * @param Router $router
      */
-    public function __construct($rootPath)
+    public function __construct($rootPath, array $config)
     {
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
@@ -25,6 +26,8 @@ class Application
         $this->response = new Response();
         $this->request = new Request();
         $this->router = new Router($this->request, $this->response);
+
+        $this->db= new Database($config['db']);
     }
 
 
