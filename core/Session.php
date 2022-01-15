@@ -9,6 +9,7 @@ class Session
     public function __construct()
     {
         session_start();
+
         $flashMessages = $_SESSION[self::FLASH_KEY] ?? [];
         foreach ($flashMessages as $key => &$flashMessage) {
 
@@ -17,7 +18,6 @@ class Session
         }
 
         $_SESSION[self::FLASH_KEY] = $flashMessages;
-        
 
     }
 

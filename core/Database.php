@@ -68,7 +68,7 @@ class Database {
     public function saveMigrations(array $migrations)
     {
         $str = implode(",", array_map(fn($m) => "('$m')", $migrations));
-        $statement = $this->pdo->prepare("INSERT INTO migrations (migration) VALUES
+        $statement = $this->pdo->prepare("INSERT INTO migrations (migration) VALUES 
                                $str"
         );
         $statement->execute();
