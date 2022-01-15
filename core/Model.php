@@ -41,10 +41,10 @@ abstract class Model
                 if($ruleName === self::RULE_EMAIL && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
                     $this->addError($attribute, self::RULE_EMAIL);
                 }
-                if($ruleName === self::RULE_MIN && $value < $rule['min']) {
+                if($ruleName === self::RULE_MIN && strlen($value)  < $rule['min']) {
                     $this->addError($attribute, self::RULE_MIN, $rule);
                 }
-                if($ruleName === self::RULE_MAX && $value > $rule['max']) {
+                if($ruleName === self::RULE_MAX && strlen($value) > $rule['max']) {
                     $this->addError($attribute, self::RULE_MAX, $rule);
                 }
                 if($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
