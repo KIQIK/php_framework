@@ -1,5 +1,7 @@
 <?php
 use app\core\Application;
+
+echo '<pre>' , var_dump(Application::$app->user) , '</pre>';
 ?>
 
 <!doctype html>
@@ -30,6 +32,7 @@ use app\core\Application;
                 <a class="nav-link" href="/contact">Contact</a>
             </li>
         </ul>
+        <?php if (Application::isGuest()): ?>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
@@ -38,7 +41,13 @@ use app\core\Application;
                 <a class="nav-link" href="/register">Register</a>
             </li>
         </ul>
-
+        <?php else: ?>
+        <li class="nav-item">
+            <a class="nav-link" href="/logout">Wellcome <?php echo Application::$app->user->getDisplayedName() ; ?>
+            (Logout)
+            </a>
+        </li>
+        <?php endif; ?>
     </div>
 </nav>
 <?php if(Application::$app->session->getFlash('success')): ?>

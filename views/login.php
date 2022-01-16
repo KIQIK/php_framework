@@ -1,19 +1,8 @@
-<div class="container">
-    <h1>Contact</h1>
-
-    <form method="post" action="" >
-        <div class="form-group">
-            <label>Login</label>
-            <input type="text" class="form-control"   placeholder="Login">
-        </div>
-        <div class="form-group">
-            <label> Password</label>
-            <input type="password" class="form-control"   placeholder="password">
-        </div>
-        <div class="form-group">
-            <label> Repeat password</label>
-            <input type="password" class="form-control"   placeholder="confirmPassword">
-        </div>
+    <div class="container">
+        <h1>Login</h1>
+        <?php $form = \app\core\form\Form::begin('', 'post'); ?>
+        <?php echo $form->field($model, 'email'); ?>
+        <?php echo $form->field($model, 'password')->passwordField(); ?>
         <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
+        <?php echo \app\core\form\Form::end(); ?>
+    </div>
