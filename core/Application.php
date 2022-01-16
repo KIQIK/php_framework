@@ -6,6 +6,7 @@ use app\controllers\Controller;
 class Application
 {
     public string $userClass;
+    public string $layout = '_main';
 
     public static string $ROOT_DIR;
     public static Application $app;
@@ -15,7 +16,7 @@ class Application
     public Response $response;
     public Database $db;
     public Session $session;
-    public Controller $controller;
+    public ?Controller $controller = null;
     public ?DbModel $user;
 
     /**
@@ -49,7 +50,14 @@ class Application
 
     public function run()
     {
-        echo $this->router->resolve();
+        try {
+            echo $this->router->resolve();
+        } catch(\Exception $e) {
+            $this->response->setStatusCode($e->getCode());
+            echo $this->router->renderView('_error', [
+                'exception' => $e
+            ]);
+        }
     }
 
     public function setController(Controller $controller): void
