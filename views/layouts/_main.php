@@ -1,7 +1,6 @@
 <?php
 use app\core\Application;
 
-echo '<pre>' , var_dump(Application::$app->user) , '</pre>';
 ?>
 
 <!doctype html>
@@ -42,11 +41,13 @@ echo '<pre>' , var_dump(Application::$app->user) , '</pre>';
             </li>
         </ul>
         <?php else: ?>
+        <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a class="nav-link" href="/logout">Wellcome <?php echo Application::$app->user->getDisplayedName() ; ?>
+            <a class="nav-link" href="/logout">Welcome <?php echo Application::$app->user->getDisplayName() ; ?>
             (Logout)
             </a>
         </li>
+        </ul>
         <?php endif; ?>
     </div>
 </nav>

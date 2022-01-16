@@ -27,6 +27,12 @@ class AuthController extends  Controller
         ]);
     }
 
+    public function logout(Request $request, Response $response)
+    {
+        Application::$app->logout();
+        $response->redirect('/');
+    }
+
     public function register(Request $request)
     {
         $user = new User();
