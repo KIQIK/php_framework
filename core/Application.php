@@ -22,6 +22,11 @@ class Application
     public ?Controller $controller = null;
     public ?UserModel $user;
 
+    const EVENT_BEFORE_REQUEST = 'beforeRequest';
+    const EVENT_AFTER_REQUEST = 'afterRequest';
+
+    protected array $eventListeners = [];
+
     /**
      * @param Router $router
      */
@@ -51,9 +56,23 @@ class Application
 
     }
 
+    public function onEvent($event, $callback)
+    {
+        $this->eventListeners[$event][] = $callback;
+    }
+
+    public function triggerEvent($event)
+    {
+        $callbacks = $this->eventListeners[$event];
+        foreach ($callbacks as $callback) {
+            call_user_func($callback);
+        }
+    }
+
 
     public function run()
     {
+        $this->triggerEvent(Application::EVENT_BEFORE_REQUEST);
         try {
             echo $this->router->resolve();
         } catch(\Exception $e) {

@@ -26,6 +26,9 @@ $config = [
 //Start Application
 $app = new Application(dirname(__DIR__), $config);
 
+$app->onEvent(Application::EVENT_BEFORE_REQUEST, function () {
+    echo 'Before Request';
+});
 
 //ROUTES
 //GET Method
