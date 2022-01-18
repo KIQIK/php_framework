@@ -1,19 +1,12 @@
-<div class="container">
-    <h1>Contact</h1>
+<?php  $this->title = 'Contact' ; ?>
 
-    <form method="post" action="" >
-        <div class="form-group">
-            <label>Subject</label>
-            <input type="text" class="form-control"   placeholder="Subject">
-        </div>
-        <div class="form-group">
-            <label> Email</label>
-            <input type="email" class="form-control"   placeholder="Email">
-        </div>
-        <div class="form-group" >
-            <label >Desctiption</label>
-            <textarea class="form-control"  name="body"></textarea>
-        </div>
+
+    <div class="container">
+        <h1>Contact</h1>
+        <?php $form = \app\core\form\Form::begin('', 'post'); ?>
+        <?php echo $form->field($model, 'email'); ?>
+        <?php echo $form->field($model, 'subject'); ?>
+        <?php echo new \app\core\form\TextAreaField($model, 'body') ?>
         <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
+        <?php echo \app\core\form\Form::end(); ?>
+    </div>

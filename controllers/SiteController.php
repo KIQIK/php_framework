@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Request;
+use app\core\Response;
+use app\models\ContactForm;
 
 class SiteController extends Controller {
 
@@ -17,15 +19,21 @@ class SiteController extends Controller {
         return $this->render('home', $params);
     }
 
-    public function contact()
+    public function contact(Request $request, Response $response)
     {
-        return $this->render('contact');
+        $contactForm = new ContactForm();
+        if($request->isPost()) {
+            $contactForm->loadData($request->getBody());
+            if($contactForm->validate() && $contactForm->send()) {
+                Application::$app->session->setFlash('success', 'The form successfully submitted');
+                return $response->redirect('/contact');
+
+            }
+        }
+
+        return $this->render('contact', [
+            'model' => $contactForm
+        ]);
     }
     
-    public function handelContact(Request $request)
-    {
-        $body = $request->getBody();
-        return 'Handling form submitted';
-    }
-
 }

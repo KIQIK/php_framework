@@ -1,6 +1,5 @@
 <?php
 use app\core\Application;
-
 ?>
 
 <!doctype html>
@@ -13,7 +12,7 @@ use app\core\Application;
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title><?php echo $this->title ; ?></title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -45,6 +44,9 @@ use app\core\Application;
         <li class="nav-item">
             <a class="nav-link" href="/profile">Profile</a>
         </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
         </ul>
         <?php endif; ?>
     </div>

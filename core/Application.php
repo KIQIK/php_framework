@@ -2,6 +2,8 @@
 
 namespace app\core;
 use app\controllers\Controller;
+use app\core\db\Database;
+use app\core\db\DbModel;
 
 class Application
 {
@@ -12,12 +14,13 @@ class Application
     public static Application $app;
 
     public Router $router;
+    public View $view;
     public Request $request;
     public Response $response;
     public Database $db;
     public Session $session;
     public ?Controller $controller = null;
-    public ?DbModel $user;
+    public ?UserModel $user;
 
     /**
      * @param Router $router
@@ -33,6 +36,7 @@ class Application
         $this->response = new Response();
         $this->request = new Request();
         $this->router = new Router($this->request, $this->response);
+        $this->view = new View();
         $this->session = new Session();
 
         $this->db= new Database($config['db']);
@@ -54,7 +58,7 @@ class Application
             echo $this->router->resolve();
         } catch(\Exception $e) {
             $this->response->setStatusCode($e->getCode());
-            echo $this->router->renderView('_error', [
+            echo $this->view->renderView('_error', [
                 'exception' => $e
             ]);
         }
@@ -65,7 +69,7 @@ class Application
         $this->controller = $controller;
     }
 
-    public function login(DbModel $user)
+    public function login(UserModel $user)
     {
         $this->user = $user;
         $primaryKey = $user->primaryKey();

@@ -18,6 +18,14 @@ class LoginForm extends Model
         ];
     }
 
+    public function labels():array
+    {
+        return [
+            'email' => 'Your email',
+            'password' => 'Password'
+        ];
+    }
+
     public function login()
     {
         $user = User::findOne(['email' => $this->email]);
@@ -34,11 +42,5 @@ class LoginForm extends Model
         return Application::$app->login($user) ;
     }
 
-    public function labels():array
-    {
-        return [
-            'email' => 'Your email',
-            'password' => 'Password'
-        ];
-    }
+
 }
